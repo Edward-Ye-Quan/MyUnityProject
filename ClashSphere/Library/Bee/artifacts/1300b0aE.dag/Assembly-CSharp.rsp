@@ -355,8 +355,10 @@
 -r:"Library/Bee/artifacts/1300b0aE.dag/UnityEngine.UI.ref.dll"
 -analyzer:"D:/Unity/2022.3.51f1c1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"D:/Unity/2022.3.51f1c1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/Scripts/CurGameController.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/GameStarter.cs"
+"Assets/Scripts/UIController.cs"
 -langversion:9.0
 /deterministic
 /optimize+
