@@ -13,14 +13,14 @@ public class GameStarter : MonoBehaviour
     void Start()
     {
         PlayMusic();
-        Invoke("LoadChooseCardScene", 4f);
+        Invoke("LoadChooseCardScene", 2f);
     }
     // Start方法：
     // Invoke：
 
     private void LoadChooseCardScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     // SceneManager
     // LoadScene

@@ -14,8 +14,9 @@ public class UIController : MonoBehaviour
     public static UIController Instance;
     public Slider slider_Energy;
     public Text test_Energy;
+    public Text test_LeftTime;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -56,5 +57,13 @@ public class UIController : MonoBehaviour
             return;
         }
         test_Energy.text = GetCurEnergy().ToString();
+    }
+
+    public void UpdateLeftTime(int m, int s)
+    {
+        string min = m.ToString(); 
+        string sec = s.ToString();
+        if (s < 10) sec = "0" + sec;
+        test_LeftTime.text = min + ":" + sec;
     }
 }

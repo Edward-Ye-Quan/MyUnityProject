@@ -11,6 +11,7 @@ public class CurGameController : MonoBehaviour
 {
     public static CurGameController Instance;
     private float curEnergy = 4;
+    private double leftTime = 180;
 
     // Start is called before the first frame update
     void Start()
@@ -40,5 +41,15 @@ public class CurGameController : MonoBehaviour
     {
         curEnergy += Time.deltaTime;
         UIController.Instance.UpdateEnergy(curEnergy);
+        UpdateTime();
+    }
+
+    private void UpdateTime()
+    {
+        leftTime -= Time.deltaTime;
+        int left = (int)leftTime;
+        int min = left / 60;
+        int sec = left % 60;
+        UIController.Instance.UpdateLeftTime(min, sec);
     }
 }
