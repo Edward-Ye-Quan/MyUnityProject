@@ -9,11 +9,10 @@ using UnityEngine;
 
 public class CurGameController : MonoBehaviour
 {
-    public static CurGameController Instance;
-    private float curEnergy = 4;
-    private double leftTime = 180;
+    public static CurGameController Instance; // 单例模式的实例
+    private float curEnergy = 4; // 当前能量值
+    private double leftTime = 180; // 剩余时间
 
-    // Start is called before the first frame update
     void Start()
     {
         if(UIController.Instance == null)
@@ -37,6 +36,7 @@ public class CurGameController : MonoBehaviour
         }
     }
 
+    // 每帧更新能量和时间
     void Update()
     {
         curEnergy += Time.deltaTime;
@@ -44,6 +44,7 @@ public class CurGameController : MonoBehaviour
         UpdateTime();
     }
 
+    // 更新剩余时间
     private void UpdateTime()
     {
         leftTime -= Time.deltaTime;

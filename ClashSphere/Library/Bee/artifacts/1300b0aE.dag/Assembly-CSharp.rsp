@@ -357,6 +357,7 @@
 -analyzer:"D:/Unity/2022.3.51f1c1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/CardManager.cs"
 "Assets/Scripts/CurGameController.cs"
+"Assets/Scripts/DraggableCard.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/GameStarter.cs"
 "Assets/Scripts/UIController.cs"

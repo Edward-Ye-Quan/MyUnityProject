@@ -22,7 +22,7 @@ public class UnitManager : MonoBehaviour
         public Sprite _sprite;
     };
 
-    public Sprite[] sprites; // 导入图片
+    public Sprite[] sprites; 
     public List<UnitInfo> unitInfos = new List<UnitInfo>();
     public List<int> selected = new List<int>();
 

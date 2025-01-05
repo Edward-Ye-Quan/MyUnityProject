@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &49833303
 Transform:
   m_ObjectHideFlags: 0
@@ -2562,7 +2562,7 @@ GameObject:
   - component: {fileID: 2870999492018732136}
   - component: {fileID: 6403896688610257451}
   m_Layer: 5
-  m_Name: ParentOfSolt_0
+  m_Name: Slot0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2732,7 +2732,7 @@ GameObject:
   - component: {fileID: 1156126427314315386}
   - component: {fileID: 2990142113462869632}
   m_Layer: 5
-  m_Name: ParentOfSolt_1
+  m_Name: Slot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2818,7 +2818,7 @@ GameObject:
   - component: {fileID: 770053023695965654}
   - component: {fileID: 8150005342873150304}
   m_Layer: 5
-  m_Name: ParentOfSolt_3
+  m_Name: Slot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3017,7 +3017,7 @@ GameObject:
   - component: {fileID: 6281119796765583627}
   - component: {fileID: 7751386184361485600}
   m_Layer: 5
-  m_Name: ParentOfQueue
+  m_Name: SlotQueue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3498,7 +3498,7 @@ GameObject:
   - component: {fileID: 5720707444437858972}
   - component: {fileID: 929415255309962237}
   m_Layer: 5
-  m_Name: ParentOfSolt_2
+  m_Name: Slot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3937,10 +3937,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02038003f54d3d40bb4a07fccefe501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PerfabOfQueue: {fileID: 5831649351403950492, guid: c35dfa359acdf1546b0b59de0b98c05c, type: 3}
-  PerfabOfVector: {fileID: 2656671634877877035, guid: 7690684d913dc724b9176d2b9cbf2e12, type: 3}
-  slot_queue: {fileID: 1668564275764326966}
-  slots_vector:
+  prefabOfQueue: {fileID: 5831649351403950492, guid: c35dfa359acdf1546b0b59de0b98c05c, type: 3}
+  prefabOfVector: {fileID: 2656671634877877035, guid: 7690684d913dc724b9176d2b9cbf2e12, type: 3}
+  slotQueue: {fileID: 1668564275764326966}
+  slotsVector:
   - {fileID: 8604786863223945502}
   - {fileID: 2187846298285171735}
   - {fileID: 5537987132655990973}

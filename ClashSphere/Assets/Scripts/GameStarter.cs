@@ -10,22 +10,19 @@ using UnityEngine.SceneManagement; // 引入场景管理的命名空间
 
 public class GameStarter : MonoBehaviour
 {
+    [SerializeField]
+    private AudioClip audioClip;
     void Start()
     {
         PlayMusic();
         Invoke("LoadChooseCardScene", 2f);
     }
-    // Start方法：
-    // Invoke：
 
     private void LoadChooseCardScene()
     {
         SceneManager.LoadScene(2);
     }
-    // SceneManager
-    // LoadScene
 
-    public AudioClip audioClip;
     private void PlayMusic()
     {
         if (audioClip == null)

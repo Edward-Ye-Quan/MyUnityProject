@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 using UnityEngine.UI; // 引入UI的命名空间
 //*****************************************
 //创建人：夜泉
@@ -11,12 +9,12 @@ using UnityEngine.UI; // 引入UI的命名空间
 
 public class UIController : MonoBehaviour
 {
-    public static UIController Instance;
-    public Slider slider_Energy;
-    public Text test_Energy;
-    public Text test_LeftTime;
-    // Start is called before the first frame update
-    void Awake()
+    public static UIController Instance; // 单例模式的实例
+    public Slider slider_Energy; // 能量条的滑动条组件
+    public Text test_Energy; // 显示当前能量的文本组件
+    public Text test_LeftTime; // 显示剩余时间的文本组件
+
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -28,7 +26,7 @@ public class UIController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    // 更新能量条的值
     public void UpdateEnergy(float newEnergy)
     {
         if (slider_Energy == null)
@@ -39,6 +37,7 @@ public class UIController : MonoBehaviour
         slider_Energy.value = newEnergy;
         SetCurEnergy();
     }
+    // 获取当前能量值
     public int GetCurEnergy()
     {
         if (slider_Energy == null)
@@ -49,6 +48,7 @@ public class UIController : MonoBehaviour
         return (int)slider_Energy.value;
     }
 
+    // 设置当前能量值的文本显示
     public void SetCurEnergy()
     {
         if (test_Energy == null)
@@ -59,8 +59,14 @@ public class UIController : MonoBehaviour
         test_Energy.text = GetCurEnergy().ToString();
     }
 
+    // 更新剩余时间的文本显示
     public void UpdateLeftTime(int m, int s)
     {
+        if (test_LeftTime == null)
+        {
+            Debug.LogError("UIController::UpdateLeftTime::test_LeftTime == null");
+            return;
+        }
         string min = m.ToString(); 
         string sec = s.ToString();
         if (s < 10) sec = "0" + sec;

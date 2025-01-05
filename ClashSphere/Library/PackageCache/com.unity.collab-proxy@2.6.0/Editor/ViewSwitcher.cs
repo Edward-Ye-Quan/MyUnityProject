@@ -224,7 +224,6 @@ namespace Unity.PlasticSCM.Editor
 
             if (HistoryTab != null)
                 HistoryTab.OnDisable();
-
         }
 
         internal void Update()

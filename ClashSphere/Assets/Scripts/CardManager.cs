@@ -16,107 +16,84 @@ using static UnityEditor.Experimental.GraphView.Port;
 
 public class CardManager : MonoBehaviour
 {
+    // 内部类，表示卡牌
     public class Card : MonoBehaviour
     {
-        public int _id;
-        public Image _image;
-        public Button _button;
-        public int _cost;
+        public int _id; // 卡牌ID
+        public Image _image; // 卡牌图像
+        public Button _button; // 卡牌按钮
+        public int _cost; // 卡牌花费
     };
+    [SerializeField]
+    private Image prefabOfQueue; // 队列中的卡牌预制体
+    [SerializeField]
+    private Image prefabOfVector; // 向量中的卡牌预制体
+    [SerializeField]
+    private Transform slotQueue; // 卡牌队列的父物体
+    [SerializeField]
+    private Transform[] slotsVector; // 卡牌向量的父物体数组
 
-    public Image PerfabOfQueue;
-    public Image PerfabOfVector;
-
-    public List<UnitInfo> selectedUnit = new List<UnitInfo>(new UnitInfo[10]);
-    public Transform slot_queue;
-    public Transform[] slots_vector;
-
-    private Card[] card_slots;
-    private Queue<Card> card_queue = new Queue<Card>();
+    private List<UnitManager.UnitInfo> selectedUnit = new List<UnitManager.UnitInfo>(new UnitManager.UnitInfo[10]); // 选中的单位信息列表
+    private Queue<Card> cardQueue = new Queue<Card>(); // 卡牌队列
 
     private void Start()
     {
-        if(slot_queue == null)
-            Debug.LogError("CardManager::Start::slot_queue == null");
-        else if (slots_vector == null)
-            Debug.LogError("CardManager::Start::slots_vector == null");
+        if (prefabOfQueue == null || prefabOfVector == null || slotQueue == null || slotsVector == null)
+            Debug.LogError("CardManager::Start::One or more required components are not assigned");
         else
-            Init_Card();
+            InitCard();
     }
 
-    private void Init_Card()
+    // 初始化卡牌
+    private void InitCard()
     {
-        Init_Unit();
-        Init_CardQueue();
-        StartCoroutine("Init_CardVector");
+        InitUnit();
+        InitCardQueue();
+        StartCoroutine(InitCardVector());
     }
 
-    private void Init_Unit()
+    // 初始化单位信息
+    private void InitUnit()
     {
         for(int i = 0; i < 10; i++)
             selectedUnit[i] = UnitManager.Instance.unitInfos[UnitManager.Instance.selected[i]];
     }
 
-    private void Init_CardQueue()
+    // 初始化卡牌队列
+    private void InitCardQueue()
     {
         System.Random random = new System.Random();
         float count = 0;
 
-        if (slot_queue.childCount > 0)
-            foreach (Transform child in slot_queue)
-                Destroy(child.gameObject);
+        foreach (Transform child in slotQueue)
+            Destroy(child.gameObject);
 
-        while (card_queue.Count < 10)
+        while (cardQueue.Count < selectedUnit.Count)
         {
-            int index = random.Next(0, 10);
+            int index = random.Next(0, selectedUnit.Count);
 
-            // 去重，用的Lambda表达式
-            if (card_queue.Any(e => e._id == index)) continue;
-            // 测试：/////////////////////////////////////////////////////////////////
-            Debug.Log(count + ":" + index);
+            if (cardQueue.Any(e => e._id == index)) continue;
 
-            // 图片信息：
-            Image card_image = Instantiate(PerfabOfQueue, slot_queue);
-            card_image.sprite = selectedUnit[index]._sprite;
-            // 让队首在最上面：
-            card_image.transform.localPosition =  new Vector3(0, 0, -1f * count);
-            // 设置牌的不透明度为1：
-            Color color = card_image.color;
-            color.a = 1;
-            card_image.color = color;
+            Image cardImage = Instantiate(prefabOfQueue, slotQueue);
+            cardImage.sprite = selectedUnit[index]._sprite;
+            cardImage.transform.localPosition =  new Vector3(0, 0, -1f * count);
+            cardImage.color = new Color(cardImage.color.r, cardImage.color.g, cardImage.color.b, 1);
 
-            // 设置按钮状态为不可触
-            Button button = card_image.gameObject.AddComponent<Button>();
+            Button button = cardImage.gameObject.AddComponent<Button>();
             button.enabled = false;
-            // 测试：/////////////////////////////////////////////////////////////////
-            button.onClick.AddListener(() => Show(index));
 
-            // 入队：（错误写法）
-            // card_queue.Enqueue(new Card { _id = index, _image = card_image, _button = button, _cost = selectedUnit[index]._cost });
-            // MonoBehaviour 类的实例不能通过 new 关键字来创建
-            // 正确的做法是使用 AddComponent<Card>() 方法
-            // 将 Card 组件添加到 GameObject 上，
-            // 然后初始化其属性。
-
-            // 添加 Card 组件并初始化:
-            Card cardComponent = card_image.gameObject.AddComponent<Card>();
+            Card cardComponent = cardImage.gameObject.AddComponent<Card>();
             cardComponent._id = index;
-            cardComponent._image = card_image;
+            cardComponent._image = cardImage;
             cardComponent._button = button;
             cardComponent._cost = selectedUnit[index]._cost;
-            // 入队：
-            card_queue.Enqueue(cardComponent);
-
+            
+            cardQueue.Enqueue(cardComponent);
             count++;
         }
     }
-
-    private void Show(int index)
-    {
-        Debug.Log(index);
-    }
-
-    private IEnumerator Init_CardVector()
+    // 初始化卡牌向量
+    private IEnumerator InitCardVector()
     {
         for (int i = 0; i < 4; i++)
         {
@@ -125,35 +102,40 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    // 填充卡牌向量
     private void FillCardVector()
     {
-        foreach (Transform slot in slots_vector)
+        foreach (Transform slot in slotsVector)
         {
             if (slot.childCount == 0)
             {
-                foreach (Card card in card_queue)
+                foreach (Card card in cardQueue)
                     card._image.transform.localPosition += new Vector3(0, 0, 1f);
 
-                Card cur_card = card_queue.Dequeue();
-                StartCoroutine(MoveCardFromQueueToSlot(cur_card, slot));
-                cur_card._button.enabled = true;
-                cur_card._button.onClick.AddListener(() => OnCardButtonClick(cur_card));
+                Card curCard = cardQueue.Dequeue();
+                StartCoroutine(MoveCardFromQueueToSlot(curCard, slot));
+                curCard._button.enabled = true;
+                curCard._button.onClick.AddListener(() => OnCardButtonClick(curCard));
                 break;
             }
         }
     }
 
     // 测试：/////////////////////////////////////////////////////////////////
+    // 卡牌按钮点击事件
     private void OnCardButtonClick(Card card)
     {
         Debug.Log($"Card {card._id} clicked!");
     }
+    //////////////////////////////////////////////////////////////////////////
+
+    // 将卡牌从队列移动到槽位
     private IEnumerator MoveCardFromQueueToSlot(Card card, Transform slot)
     {
         Vector3 startPos = card._image.transform.position;
         Vector3 endPos = slot.position;
         Vector2 startSize = card._image.rectTransform.sizeDelta;
-        Vector2 endSize = PerfabOfVector.rectTransform.sizeDelta;
+        Vector2 endSize = prefabOfVector.rectTransform.sizeDelta;
 
         float duration = 0.2f;
         float cur = 0f;
@@ -176,9 +158,10 @@ public class CardManager : MonoBehaviour
         CheckCardStatus();
     }
 
+    // 检查卡牌状态
     private void CheckCardStatus()
     {
-        foreach(Transform slot in slots_vector)
+        foreach(Transform slot in slotsVector)
         {
             if(slot.childCount > 0)
             {
@@ -189,11 +172,19 @@ public class CardManager : MonoBehaviour
                 {
                     card._image.color = new Color(0.5f, 0.5f, 0.5f);
                     card._button.enabled = false;
+
+                    if(card.GetComponent<DraggableCard>()!= null)
+                        Destroy(card.GetComponent<DraggableCard>());
                 }
                 else
                 { 
                     card._image.color = new Color(1f, 1f, 1f);
                     card._button.enabled = true;
+                    if (card.GetComponent<DraggableCard>() == null)
+                    {
+                        DraggableCard draggableCard = card.gameObject.AddComponent<DraggableCard>();
+                        draggableCard.SetCardInfo(card); // 设置卡牌信息
+                    }
                 }
             }
         }
