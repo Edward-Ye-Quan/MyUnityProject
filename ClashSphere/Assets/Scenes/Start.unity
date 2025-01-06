@@ -618,6 +618,34 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cef92a8ee79dc8c41965bedf4d9c6954, type: 3}
   - {fileID: 21300000, guid: f320341f596e65d45ac1f126abfa2fcd, type: 3}
   - {fileID: 21300000, guid: 25a19b51f5b04a540ad70ad8e71433fd, type: 3}
+  imagesOfPrefabs:
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  - {fileID: 775686523166608057, guid: 4fb2edcbd113c014fb5e3dd610349bd6, type: 3}
+  prefabs:
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
+  - {fileID: 6514083000180363206, guid: 78515332ceabbd94fbaba9444f3d2500, type: 3}
   selected: 
 --- !u!4 &1836554586
 Transform:

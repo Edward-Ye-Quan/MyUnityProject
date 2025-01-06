@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using static UnitManager;
-
+using UnityEngine.UI;
 //*****************************************
 //创建人：夜泉
 //功能说明：管理全局的单位信息
@@ -22,7 +22,9 @@ public class UnitManager : MonoBehaviour
         public Sprite _sprite;
     };
 
-    public Sprite[] sprites; 
+    public Sprite[] sprites;
+    public Image[] imagesOfPrefabs;
+    public GameObject[] prefabs;
     public List<UnitInfo> unitInfos = new List<UnitInfo>();
     public List<int> selected = new List<int>();
 
